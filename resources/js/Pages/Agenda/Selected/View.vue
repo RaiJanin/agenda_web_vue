@@ -1,5 +1,4 @@
 <script setup>
-import HeadButton from '@/Components/Button/HeadButton.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import ContentLayout from '@/Layouts/ContentLayout.vue';
 import { Head, Link, router, usePage } from '@inertiajs/vue3';
@@ -9,6 +8,7 @@ import { computed } from 'vue';
 import FileCard from '@/Components/Card/FileCard.vue';
 import PostDetailsHeader from '@/Components/Header/PostDetailsHeader.vue';
 import PostDetails from '@/Components/Card/PostDetails.vue';
+import LinksButton from '@/Components/Button/LinksButton.vue';
 
 const props = defineProps({
     agenda: Object,
@@ -27,9 +27,9 @@ const user = computed(() => page.props.auth?.user )
     <AppLayout>
         <ContentLayout content_title="View Agenda">
             <template #content-head-buttons>
-                <HeadButton @click="router.get(route('agenda.view-all'))" :class="['bg-amber-500']">
+                <LinksButton @click="router.get(route('agenda.view-all'))" :class="['bg-amber-500']">
                     <i class="fa-solid fa-arrow-left"></i><span>Back to List</span>
-                </HeadButton>
+                </LinksButton>
             </template>
             <template #main-content>
                 <div class="flex-1 overflow-y-auto">

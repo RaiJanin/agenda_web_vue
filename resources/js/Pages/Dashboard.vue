@@ -8,7 +8,7 @@ import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import { computed, onMounted } from 'vue';
 import { dashboardData } from '@/config/data';
 import { statusLabels, concernStatusColors } from '@/utils/status';
-import HeadButton from '@/Components/Button/HeadButton.vue';
+import LinksButton from '@/Components/Button/LinksButton.vue';
 
 const page = usePage();
 const user = computed(() => page.props.auth?.user)
@@ -21,9 +21,9 @@ const user = computed(() => page.props.auth?.user)
     <AppLayout>
         <ContentLayout content_title="Dashboard">
             <template #content-head-buttons>
-                <HeadButton v-if="user.role === 'admin'" @click="router.get('#')" :class="['bg-blue-600']">
+                <LinksButton v-if="user.role === 'admin'" @click="router.get('#')" :class="['bg-blue-600']">
                     <i data-feather="plus" class="mr-2"></i><span>New Report</span>
-                </HeadButton>
+                </LinksButton>
             </template>
 
             <template #main-content>

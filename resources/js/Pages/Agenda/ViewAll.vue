@@ -1,5 +1,4 @@
 <script setup>
-import HeadButton from '@/Components/Button/HeadButton.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import ContentLayout from '@/Layouts/ContentLayout.vue';
 import { Head, router, usePage } from '@inertiajs/vue3';
@@ -9,6 +8,7 @@ import { statusColors } from '@/utils/status';
 import PostCard from '@/Components/Card/PostCard.vue';
 import AllowedUserActions from '@/Components/Button/AllowedUserActions.vue';
 import GuestUserActions from '@/Components/Button/GuestUserActions.vue';
+import LinksButton from '@/Components/Button/LinksButton.vue';
 
 defineProps({
     agendas: Object
@@ -34,9 +34,9 @@ const deleteAct = (agendaId) => {
     <AppLayout>
         <ContentLayout content_title="Agendas">
             <template #content-head-buttons>
-                <HeadButton v-if="user?.role === 'admin'" @click="router.get(route('agenda.create'))" :class="['bg-blue-600']">
+                <LinksButton v-if="user?.role === 'admin'" @click="router.get(route('agenda.create'))" :class="['bg-blue-600']">
                     <i data-feather="plus" class="mr-2 text-xs"></i><span>New Agenda</span>
-                </HeadButton>
+                </LinksButton>
             </template>
             <template #main-content>
                 <div id="agenda-container" class="grid grid-cols-1 lg:grid-cols-2 gap-5">

@@ -14,7 +14,6 @@ import FileInput from '@/Components/Input/FileInput.vue';
 import CancelButton from '@/Components/Button/CancelButton.vue';
 import SubmitButton from '@/Components/Button/SubmitButton.vue';
 import Selection from '@/Components/Input/Selection.vue';
-import HeadButton from '@/Components/Button/HeadButton.vue';
 
 const props = defineProps({
     agenda: Object,
