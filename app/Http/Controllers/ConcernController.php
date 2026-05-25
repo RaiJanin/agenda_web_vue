@@ -51,10 +51,7 @@ class ConcernController extends Controller
     {
         $agenda = Agenda::select(['agenda_id', 'title'])->findOrFail($agenda_id);
         $res_pers = User::whereIn('role', ['admin', 'member'])->pluck('name', 'id');
-        return Inertia::render('Concerns/CreateConcern', [
-            'agenda' => $agenda,
-            'res_pers' => $res_pers,
-        ]);
+        return Inertia::render('Concerns/CreateConcern', compact('agenda', 'res_pers'));
     }
 
     public function store(Request $request)
@@ -185,9 +182,7 @@ class ConcernController extends Controller
             ->latest()
             ->paginate(20);
 
-        return Inertia::render('Concerns/MyConcerns', [
-            'concerns' => $concerns
-        ]);
+        return Inertia::render('Concerns/MyConcerns', compact('concerns'));
     }
 
     public function destroy($id)

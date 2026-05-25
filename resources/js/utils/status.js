@@ -21,3 +21,10 @@ export const concernStatusColors = {
     pending: 'text-yellow-700 bg-yellow-100',
     inReview: 'text-blue-700 bg-blue-100',
 }
+
+export const agendaStatus = [
+    { value: "pending", label: "Pending" },
+    { value: "ongoing", label: "Ongoing" },
+    { value: "resolved", label: "Resolved" },
+    { value: "closed", label: "Closed" },
+];

@@ -15,9 +15,7 @@ class AgendaController extends Controller
             ->withCount('concerns')
             ->paginate(20);
 
-        return Inertia::render('Agenda/ViewAll', [
-            'agendas' => $agendas
-        ]);
+        return Inertia::render('Agenda/ViewAll', compact('agendas'));
     }
 
     public function clickedAgenda(Request $request)
@@ -27,18 +25,23 @@ class AgendaController extends Controller
         $creator = $agenda->creator->name;
         $attachment = $agenda->attachments->first()->file_path ?? null;
         
-        return Inertia::render('Agenda/Selected/View', [
-            'agenda' => $agenda,
-            'creator' => $creator,
-            'attachment' => $attachment
-        ]);
+        return Inertia::render('Agenda/Selected/View', compact('agenda', 'creator', 'attachment'));
     }
 
     public function previewEditAgenda(Request $request)
     {
         $agenda_id = $request->route('agenda_id');
         $agenda = Agenda::find($agenda_id);
-        return view('v2.pages.agenda.edit', compact('agenda'));
+
+        $isAdmin = auth()->user()->role === 'admin';
+        $isCreator = auth()->user()->created_by === auth()->user()->id;
+        $auths = [
+            'isAdmin' => $isAdmin,
+            'isCreator' => $isCreator,
+            'isUser' => !$isAdmin && !$isCreator
+        ];
+
+        return Inertia::render('Agenda/Selected/Edit', compact('agenda', 'auths'));
     }
 
     public function show(Agenda $agenda)

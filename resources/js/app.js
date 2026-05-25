@@ -28,7 +28,7 @@ createInertiaApp({
                 feather.replace();
             },
         });
-        app.config.devtools = true;
+        app.config.devtools = import.meta.env?.VUE_DEVTOOLS || true
         app.mount(el);
     },
     progress: {
